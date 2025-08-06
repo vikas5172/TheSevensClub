@@ -325,4 +325,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', checkSpeedometerAnimation);
     checkSpeedometerAnimation(); // Initial check on load
+
+    // Case Study Modal Logic
+    const caseStudyLinks = document.querySelectorAll('.case-study .read-more');
+    const modal = document.createElement('div');
+    modal.id = 'case-study-modal';
+    modal.classList.add('modal');
+    modal.innerHTML = `
+        <div class="modal-content glass-panel">
+            <span class="close-button">&times;</span>
+            <img id="modal-image" src="" alt="Case Study Image">
+            <h2 id="modal-title"></h2>
+            <p id="modal-details"></p>
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    const modalContent = modal.querySelector('.modal-content');
+    const closeButton = modal.querySelector('.close-button');
+    const modalImage = modal.querySelector('#modal-image');
+    const modalTitle = modal.querySelector('#modal-title');
+    const modalDetails = modal.querySelector('#modal-details');
+
+    caseStudyLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const caseStudy = this.closest('.case-study');
+            const title = caseStudy.dataset.title;
+            const image = caseStudy.dataset.image;
+            const details = caseStudy.dataset.details;
+
+            modalTitle.textContent = title;
+            modalImage.src = image;
+            modalDetails.textContent = details;
+
+            modal.style.display = 'flex';
+        });
+    });
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
 });
