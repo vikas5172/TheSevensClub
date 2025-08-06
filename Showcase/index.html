@@ -71,6 +71,10 @@
         .service-readmore:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+        .chart-container {
+            width: 90%;
+            height: 100px;
+        }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- Add meta tags for social sharing -->
@@ -364,32 +368,32 @@
                 <div class="metric-card glass-panel">
                     <div class="client-logo">Twitter Engagement</div>
                     <div class="metric-value">150-170%</div>
+                    <div class="chart-container" id="twitter-engagement-chart"></div>
                     <div class="metric-label">Increase within first five weeks</div>
-                    <div class="speedometer-chart" data-percentage="75" data-benchmark="70" title="Twitter Engagement Performance: 75% of target"></div>
                     <div class="client-names">Coral Finance, WorldOfDypians, Net3, Tilted, Chelon AI, Web3TalentsShow, PlutoPe, Dypius, Mussel Coin, DefiAstronauts</div>
                 </div>
                 
                 <div class="metric-card glass-panel">
                     <div class="client-logo">Twitter Space Results</div>
                     <div class="metric-value">50+</div>
+                    <div class="chart-container" id="twitter-space-chart"></div>
                     <div class="metric-label">Active listeners per session</div>
-                    <div class="speedometer-chart" data-percentage="90" data-benchmark="85" title="Twitter Space Participation Performance: 90% of target"></div>
                     <div class="client-names">Coral Finance, BitDelta, Tilted</div>
                 </div>
                 
                 <div class="metric-card glass-panel">
                     <div class="client-logo">Community Activity</div>
                     <div class="metric-value">50-65%</div>
+                    <div class="chart-container" id="community-activity-chart"></div>
                     <div class="metric-label">Increase in community activity</div>
-                    <div class="speedometer-chart" data-percentage="65" data-benchmark="60" title="Community Activity Performance: 65% of target"></div>
                     <div class="client-names">Umoja, Join, Kryzel, Arc Finance, Coral Finance, Tilted</div>
                 </div>
                 
                 <div class="metric-card glass-panel">
                     <div class="client-logo">Influencer Outreach</div>
                     <div class="metric-value">45%</div>
+                    <div class="chart-container" id="influencer-outreach-chart"></div>
                     <div class="metric-label">Increase in project visibility</div>
-                    <div class="speedometer-chart" data-percentage="80" data-benchmark="75" title="Influencer Outreach Performance: 80% of target"></div>
                     <div class="client-names">BitDelta, Coral Finance, Web3TalentsShow, Hydro Online</div>
                 </div>
             </div>
@@ -706,6 +710,179 @@
     <script src="script.js"></script>
     <script src="image-implementation.js"></script>
     <script src="ui-enhancements.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Twitter Engagement Chart (Bar Chart)
+            var options1 = {
+                chart: {
+                    type: 'bar',
+                    height: '40%',
+                    toolbar: { show: false },
+                    sparkline: { enabled: true }
+                },
+                series: [{
+                    name: 'Engagement Increase',
+                    data: [80, 110, 170]
+                }],
+                xaxis: {
+                    categories: ['Coral', 'WOD', 'Net3']
+                },
+                colors: ['#1da1f2'],
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                        columnWidth: '40%',
+                        endingShape: 'rounded'
+                    },
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    show: true,
+                    width: 0,
+                    colors: ['transparent']
+                },
+                tooltip: {
+                    theme: 'dark',
+                    y: {
+                        formatter: function (val) {
+                            return val + "%"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#twitter-engagement-chart"), options1).render();
+
+            // Twitter Space Chart (Radial Bar)
+            var options2 = {
+                chart: {
+                    height: '50%',
+                    type: 'radialBar',
+                },
+                series: [90], // 50+ listeners -> let's represent as 90% of a target of 55
+                plotOptions: {
+                    radialBar: {
+                        hollow: {
+                            size: '60%',
+                        },
+                        dataLabels: {
+                            showOn: "always",
+                            name: {
+                                show: false,
+                            },
+                            value: {
+                                color: "#fff",
+                                fontSize: "30px",
+                                show: true,
+                                formatter: function (val) {
+                                    return '50+'
+                                }
+                            }
+                        }
+                    }
+                },
+                stroke: {
+                    lineCap: "round",
+                },
+                labels: ['Listeners'],
+                colors: ['#8a2be2'],
+                 tooltip: {
+                    enabled: true,
+                    theme: 'dark',
+                    y: {
+                        formatter: function (val) {
+                            return "50+ Listeners"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#twitter-space-chart"), options2).render();
+
+            // Community Activity Chart (Area Chart)
+            var options3 = {
+                chart: {
+                    type: 'area',
+                    height: '40%',
+                    toolbar: { show: false },
+                    sparkline: { enabled: true }
+                },
+                series: [{
+                    name: 'Activity Increase',
+                    data: [50, 55, 60, 65]
+                }],
+                colors: ['#28a745'],
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth'
+                },
+                tooltip: {
+                    theme: 'dark',
+                    y: {
+                        formatter: function (val) {
+                            return val + "%"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#community-activity-chart"), options3).render();
+
+            // Influencer Outreach Chart (Gauge Chart)
+            var options4 = {
+                chart: {
+                    type: 'radialBar',
+                    height: '60%',
+                    offsetY: 0,
+                    sparkline: {
+                        enabled: true
+                    }
+                },
+                series: [45],
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -90,
+                        endAngle: 90,
+                        hollow: {
+                            size: '50%',
+                        },
+                        track: {
+                            background: 'rgba(255, 255, 255, 0.1)',
+                            strokeWidth: '60%',
+                        },
+                        dataLabels: {
+                            name: {
+                                show: false,
+                            },
+                            value: {
+                                offsetY: -1,
+                                fontSize: '30px',
+                                color: '#fff',
+                                formatter: function (val) {
+                                    return val + "%";
+                                }
+                            }
+                        }
+                    }
+                },
+                colors: ['#dc3545'],
+                stroke: {
+                    lineCap: 'round'
+                },
+                tooltip: {
+                    theme: 'dark',
+                    y: {
+                        formatter: function(val) {
+                            return val + "% Increase"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#influencer-outreach-chart"), options4).render();
+        });
+    </script>
     <!-- <script src="logo-animations.js"></script> -->
     <!-- <script src="portfolio-features.js"></script> -->
     <!-- <script src="service-enhancements.js"></script> -->

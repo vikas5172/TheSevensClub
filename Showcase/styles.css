@@ -947,13 +947,26 @@ section {
 /* Metrics Dashboard */
 .metrics-dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
     gap: 30px;
+    align-items: stretch; /* Align items to have same height */
 }
 
 .metric-card {
     text-align: center;
     animation: float-slow 15s ease-in-out infinite;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Space out content */
+    min-height: 450px; /* Ensure uniform card height */
+}
+
+.metric-card .chart-container {
+    flex-grow: 1; /* Allow chart container to fill space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
 }
 
 .client-logo {
