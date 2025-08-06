@@ -396,6 +396,22 @@
                     <div class="metric-label">Increase in project visibility</div>
                     <div class="client-names">BitDelta, Coral Finance, Web3TalentsShow, Hydro Online</div>
                 </div>
+
+                <div class="metric-card glass-panel">
+                    <div class="client-logo">Website Traffic</div>
+                    <div class="metric-value">40%</div>
+                    <div class="chart-container" id="website-traffic-chart"></div>
+                    <div class="metric-label">Boost from Content Promotion</div>
+                    <div class="client-names">BitDelta, Hydro Online</div>
+                </div>
+                
+                <div class="metric-card glass-panel">
+                    <div class="client-logo">Brand Awareness</div>
+                    <div class="metric-value">~60%</div>
+                    <div class="chart-container" id="brand-awareness-chart"></div>
+                    <div class="metric-label">Increase via Ambassador Program</div>
+                    <div class="client-names">Spheron, CryptoRefills, BitDelta, Hydro</div>
+                </div>
             </div>
             
             <!-- Improved case study structure with h2 heading -->
@@ -881,6 +897,79 @@
                 }
             };
             new ApexCharts(document.querySelector("#influencer-outreach-chart"), options4).render();
+
+            // Website Traffic Chart (Line Chart)
+            var options5 = {
+                chart: {
+                    type: 'line',
+                    height: '40%',
+                    toolbar: { show: false },
+                    sparkline: { enabled: true }
+                },
+                series: [{
+                    name: 'Traffic Boost',
+                    data: [15, 25, 40] 
+                }],
+                colors: ['#ffc107'],
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                tooltip: {
+                    theme: 'dark',
+                    y: {
+                        formatter: function (val) {
+                            return val + "% Boost"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#website-traffic-chart"), options5).render();
+
+            // Brand Awareness Chart (Radial Bar)
+            var options6 = {
+                chart: {
+                    height: '50%',
+                    type: 'radialBar',
+                },
+                series: [60],
+                plotOptions: {
+                    radialBar: {
+                        hollow: {
+                            size: '60%',
+                        },
+                        dataLabels: {
+                            showOn: "always",
+                            name: {
+                                show: false,
+                            },
+                            value: {
+                                color: "#fff",
+                                fontSize: "30px",
+                                show: true,
+                                formatter: function (val) {
+                                    return val + '%'
+                                }
+                            }
+                        }
+                    }
+                },
+                stroke: {
+                    lineCap: "round",
+                },
+                labels: ['Awareness'],
+                colors: ['#00bcd4'],
+                 tooltip: {
+                    enabled: true,
+                    theme: 'dark',
+                    y: {
+                        formatter: function (val) {
+                            return "Avg " + val + "% Increase"
+                        }
+                    }
+                }
+            };
+            new ApexCharts(document.querySelector("#brand-awareness-chart"), options6).render();
         });
     </script>
     <!-- <script src="logo-animations.js"></script> -->
