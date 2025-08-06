@@ -176,6 +176,41 @@ document.addEventListener('DOMContentLoaded', function() {
         svg.setAttribute('width', '100%');
         svg.setAttribute('height', '100%');
 
+        // Determine gradient colors based on percentage
+        let startColor, endColor;
+        if (percentage >= 80) {
+            startColor = '#4CAF50'; // Green for high performance
+            endColor = '#8BC34A';
+        } else if (percentage >= 50) {
+            startColor = '#FFC107'; // Yellow for medium performance
+            endColor = '#FFEB3B';
+        } else {
+            startColor = '#F44336'; // Red for low performance
+            endColor = '#FF9800';
+        }
+
+        // Define gradient
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const linearGradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+        linearGradient.setAttribute('id', 'gradient'); // ID must match stroke URL
+        linearGradient.setAttribute('x1', '0%');
+        linearGradient.setAttribute('y1', '0%');
+        linearGradient.setAttribute('x2', '100%');
+        linearGradient.setAttribute('y2', '0%');
+
+        const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop1.setAttribute('offset', '0%');
+        stop1.setAttribute('stop-color', startColor);
+        linearGradient.appendChild(stop1);
+
+        const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+        stop2.setAttribute('offset', '100%');
+        stop2.setAttribute('stop-color', endColor);
+        linearGradient.appendChild(stop2);
+
+        defs.appendChild(linearGradient);
+        svg.appendChild(defs);
+
         // Background arc
         const backgroundArc = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         backgroundArc.setAttribute('cx', SVG_SIZE / 2);
@@ -202,6 +237,42 @@ document.addEventListener('DOMContentLoaded', function() {
         foregroundArc.setAttribute('stroke-linecap', 'round');
         foregroundArc.classList.add('speedometer-fill'); // Class for animation
         svg.appendChild(foregroundArc);
+
+        // Percentage text
+        const percentageText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        percentageText.setAttribute('x', SVG_SIZE / 2);
+        percentageText.setAttribute('y', SVG_SIZE / 2);
+        percentageText.setAttribute('text-anchor', 'middle');
+        percentageText.setAttribute('dominant-baseline', 'middle');
+        percentageText.classList.add('speedometer-text');
+        percentageText.textContent = `${percentage}%`;
+        svg.appendChild(percentageText);
+
+        // Benchmark line
+        const benchmark = parseInt(chartElement.dataset.benchmark, 10);
+        if (!isNaN(benchmark)) {
+            const benchmarkOffset = START_OFFSET + ARC_LENGTH - (ARC_LENGTH * (benchmark / 100));
+
+            // Calculate start and end points for the benchmark line
+            // We need to convert polar coordinates (offset) to Cartesian (x,y)
+            const angleRad = (benchmarkOffset / CIRCUMFERENCE) * 2 * Math.PI + (Math.PI / 2); // Convert dashoffset to angle, adjust for 225 deg start
+            const lineLength = STROKE_WIDTH * 0.8; // Length of the benchmark line
+
+            const startX = SVG_SIZE / 2 + (RADIUS - STROKE_WIDTH / 2) * Math.cos(angleRad);
+            const startY = SVG_SIZE / 2 + (RADIUS - STROKE_WIDTH / 2) * Math.sin(angleRad);
+            const endX = SVG_SIZE / 2 + (RADIUS + STROKE_WIDTH / 2) * Math.cos(angleRad);
+            const endY = SVG_SIZE / 2 + (RADIUS + STROKE_WIDTH / 2) * Math.sin(angleRad);
+
+            const benchmarkLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            benchmarkLine.setAttribute('x1', startX);
+            benchmarkLine.setAttribute('y1', startY);
+            benchmarkLine.setAttribute('x2', endX);
+            benchmarkLine.setAttribute('y2', endY);
+            benchmarkLine.setAttribute('stroke', 'rgba(255, 255, 255, 0.7)'); /* White color for benchmark */
+            benchmarkLine.setAttribute('stroke-width', STROKE_WIDTH / 4);
+            benchmarkLine.setAttribute('stroke-linecap', 'round');
+            svg.appendChild(benchmarkLine);
+        }
 
         // Append SVG to container
         chartElement.appendChild(svg);
@@ -241,6 +312,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const percentage = parseInt(chart.dataset.percentage, 10);
                 drawSpeedometer(chart, percentage);
                 animatedSpeedometers.add(chart);
+
+                // Add glow effect for high percentages
+                if (percentage >= 80) {
+                    chart.classList.add('glow');
+                } else {
+                    chart.classList.remove('glow'); // Ensure glow is removed if not high
+                }
             }
         });
     }

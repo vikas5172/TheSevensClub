@@ -991,6 +991,22 @@ section {
     filter: drop-shadow(0 0 5px var(--primary-color));
 }
 
+.speedometer-chart.glow .speedometer-fill {
+    animation: speedometerGlow 1.5s infinite alternate;
+}
+
+@keyframes speedometerGlow {
+    from { filter: drop-shadow(0 0 5px var(--primary-color)); opacity: 1; }
+    to { filter: drop-shadow(0 0 15px var(--secondary-color)); opacity: 0.8; }
+}
+
+.speedometer-chart .speedometer-text {
+    font-size: 1.5rem; /* Adjust size as needed */
+    font-weight: 600;
+    fill: var(--text-primary); /* Use primary text color */
+    transition: fill 0.3s ease; /* Smooth transition for color changes */
+}
+
 /* Gradient for speedometer fill */
 svg defs linearGradient#gradient stop:nth-child(1) {
     stop-color: var(--primary-color);
