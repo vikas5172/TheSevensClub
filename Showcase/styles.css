@@ -970,15 +970,53 @@ section {
     margin-bottom: 0.5rem;
 }
 
+/* Speedometer Chart Styles */
+.speedometer-chart {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    margin: 1.5rem auto 0.5rem auto; /* Center and add spacing */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speedometer-chart svg {
+    overflow: visible; /* Allow stroke to go beyond viewBox if needed for round caps */
+}
+
+.speedometer-chart .speedometer-fill {
+    /* Animation handled by JS using stroke-dashoffset */
+    transition: stroke-dashoffset 1s ease-out;
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+/* Gradient for speedometer fill */
+svg defs linearGradient#gradient stop:nth-child(1) {
+    stop-color: var(--primary-color);
+}
+
+svg defs linearGradient#gradient stop:nth-child(2) {
+    stop-color: var(--secondary-color);
+}
+
+/* Removed Sparkline Chart Styles */
+/*
+.metric-chart {
+    height: 60px; 
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.metric-chart svg {
+    display: block; 
+}
+*/
+
 .metric-label {
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-}
-
-.metric-chart {
-    height: 100px;
-    background: linear-gradient(to top right, rgba(110, 120, 255, 0.2), rgba(74, 223, 206, 0.2));
-    border-radius: 12px;
 }
 
 @keyframes float-slow {

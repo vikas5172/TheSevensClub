@@ -365,6 +365,7 @@
                     <div class="client-logo">Twitter Engagement</div>
                     <div class="metric-value">150-170%</div>
                     <div class="metric-label">Increase within first five weeks</div>
+                    <div class="speedometer-chart" data-percentage="75"></div>
                     <div class="client-names">Coral Finance, WorldOfDypians, Net3, Tilted, Chelon AI, Web3TalentsShow, PlutoPe, Dypius, Mussel Coin, DefiAstronauts</div>
                 </div>
                 
@@ -372,6 +373,7 @@
                     <div class="client-logo">Twitter Space Results</div>
                     <div class="metric-value">50+</div>
                     <div class="metric-label">Active listeners per session</div>
+                    <div class="speedometer-chart" data-percentage="90"></div>
                     <div class="client-names">Coral Finance, BitDelta, Tilted</div>
                 </div>
                 
@@ -379,6 +381,7 @@
                     <div class="client-logo">Community Activity</div>
                     <div class="metric-value">50-65%</div>
                     <div class="metric-label">Increase in community activity</div>
+                    <div class="speedometer-chart" data-percentage="65"></div>
                     <div class="client-names">Umoja, Join, Kryzel, Arc Finance, Coral Finance, Tilted</div>
                 </div>
                 
@@ -386,6 +389,7 @@
                     <div class="client-logo">Influencer Outreach</div>
                     <div class="metric-value">45%</div>
                     <div class="metric-label">Increase in project visibility</div>
+                    <div class="speedometer-chart" data-percentage="80"></div>
                     <div class="client-names">BitDelta, Coral Finance, Web3TalentsShow, Hydro Online</div>
                 </div>
             </div>
@@ -702,52 +706,10 @@
     <script src="script.js"></script>
     <script src="image-implementation.js"></script>
     <script src="ui-enhancements.js"></script>
-    <!-- Hamburger menu script -->
-    <script>
-    const hamburger = document.getElementById('hamburger-menu');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
-    function closeMobileNav() {
-        mobileNav.classList.remove('open');
-    }
-    hamburger.addEventListener('click', function() {
-        mobileNav.classList.toggle('open');
-    });
-    if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', closeMobileNav);
-    }
-    // Optional: close nav on outside click or ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeMobileNav();
-    });
-    mobileNav.addEventListener('click', function(e) {
-        if (e.target === mobileNav) closeMobileNav();
-    });
-
-    // Typing effect for hero subtitle
-    const typingText = "Boost Your Social Media Presence";
-    const typingEl = document.getElementById('hero-typing');
-    let typingIdx = 0;
-    function typeHeroSubtitle() {
-        if (typingEl && typingIdx <= typingText.length) {
-            typingEl.textContent = typingText.slice(0, typingIdx);
-            typingIdx++;
-            setTimeout(typeHeroSubtitle, 55);
-        }
-    }
-    typeHeroSubtitle();
-
-    // Contact form success message
-    const contactForm = document.getElementById('contact-form');
-    const formSuccess = document.getElementById('form-success');
-    if (contactForm && formSuccess) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            contactForm.style.display = 'none';
-            formSuccess.style.display = 'block';
-        });
-    }
-    </script>
+    <!-- <script src="logo-animations.js"></script> -->
+    <!-- <script src="portfolio-features.js"></script> -->
+    <!-- <script src="service-enhancements.js"></script> -->
+    
     <button id="back-to-top" aria-label="Back to Top" title="Back to Top" style="display: flex;"><i class="fas fa-chevron-up"></i></button>
 </body>
 </html>
