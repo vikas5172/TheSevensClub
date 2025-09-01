@@ -89,29 +89,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply all enhancements
     initEnhancements();
 
-    // Hamburger menu script
-    const hamburger = document.getElementById('hamburger-menu');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
-
-    function closeMobileNav() {
-        mobileNav.classList.remove('open');
-    }
-
-    hamburger.addEventListener('click', function() {
-        mobileNav.classList.toggle('open');
-    });
-
-    if (mobileNavClose) {
-        mobileNavClose.addEventListener('click', closeMobileNav);
-    }
-
-    // Optional: close nav on outside click or ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeMobileNav();
-    });
-
-    mobileNav.addEventListener('click', function(e) {
-        if (e.target === mobileNav) closeMobileNav();
-    });
+    
 });
