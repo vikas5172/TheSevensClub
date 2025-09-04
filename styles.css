@@ -317,6 +317,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Add relative positioning for the hamburger icon */
 }
 
 .logo {
@@ -1092,6 +1093,10 @@ svg defs linearGradient#gradient stop:nth-child(2) {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.case-studies-title {
+    margin-top: 4rem; /* Adds space above the "Featured Case Studies" title */
+}
+
 /* Team Section: Display team members side by side */
 .team-grid {
     display: flex;
@@ -1296,8 +1301,9 @@ img {
     .hamburger {
         display: flex;
         position: absolute;
-        right: 24px;
-        top: 18px;
+        right: 20px; /* Adjust right spacing */
+        top: 50%; /* Center vertically */
+        transform: translateY(-50%); /* Fine-tune vertical alignment */
     }
     nav ul {
         display: none !important;

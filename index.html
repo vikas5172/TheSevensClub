@@ -72,8 +72,11 @@
             background: rgba(255, 255, 255, 0.2);
         }
         .chart-container {
-            width: 90%;
+            width: 100%;
             height: 100px;
+            padding-left: 30px;
+            padding-right: 30px;
+            /*margin: 0 auto; /* Center the chart container horizontally */
         }
     </style>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -115,11 +118,11 @@
     <div class="mobile-nav" id="mobile-nav">
         <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation">&times;</button>
         <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#results">Results</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#demo">Free Demo</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#services" onclick="closeMobileNav()">Services</a></li>
+            <li><a href="#results" onclick="closeMobileNav()">Results</a></li>
+            <li><a href="#team" onclick="closeMobileNav()">Team</a></li>
+            <li><a href="#demo" onclick="closeMobileNav()">Free Demo</a></li>
+            <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
         </ul>
     </div>
 
@@ -415,7 +418,7 @@
             </div>
             
             <!-- Improved case study structure with h2 heading -->
-            <h2 class="section-title">Featured Case Studies</h2>
+            <h2 class="section-title case-studies-title">Featured Case Studies</h2>
             <div class="case-studies-container">
                 <div class="case-study glass-panel" 
                      data-title="Coral Finance" 
@@ -809,7 +812,7 @@
     <script src="script.js"></script>
     <script src="image-implementation.js"></script>
     <script src="ui-enhancements.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Twitter Engagement Chart (Bar Chart)

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetSection = document.querySelector(targetId);
                 
                 if (targetSection) {
-                    const headerOffset = 100;
+                    const headerOffset = 0;
                     const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
                     
                     window.scrollTo({
