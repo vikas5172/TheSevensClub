@@ -40,11 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 j++;
                 if (j === currentWord.length) {
                     isDeleting = true;
-                    setTimeout(type, 2000); // Pause at end of word
+                    setTimeout(type, 1000); // Reduced pause at end of word
                     return;
                 }
             }
-            setTimeout(type, isDeleting ? 100 : 200);
+            setTimeout(type, isDeleting ? 75 : 150);
         }
         type();
     }
@@ -53,7 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
         window.addEventListener('scroll', () => {
-            backToTopBtn.style.display = (window.scrollY > 300) ? 'flex' : 'none';
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
         });
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });

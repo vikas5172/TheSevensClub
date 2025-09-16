@@ -44,6 +44,7 @@
     --vibrant-yellow-border: rgba(255, 196, 0, 0.8);
     --vibrant-teal-border: rgba(21, 209, 209, 0.8);
     --vibrant-orange-border: rgba(255, 126, 49, 0.8);
+    --vibrant-lime-border: rgba(162, 213, 0, 0.8);
 }
 
 * {
@@ -291,6 +292,12 @@ body::before {
     background: linear-gradient(135deg, var(--vibrant-orange), rgba(255, 126, 49, 0.1));
     border-color: var(--vibrant-orange-border);
     box-shadow: 0 8px 32px rgba(255, 126, 49, 0.2);
+}
+
+.lime-tint {
+    background: linear-gradient(135deg, rgba(162, 213, 0, 0.4), rgba(162, 213, 0, 0.1));
+    border-color: var(--vibrant-lime-border);
+    box-shadow: 0 8px 32px rgba(162, 213, 0, 0.2);
 }
 
 /* Maintain compatibility with old color names */
@@ -541,6 +548,8 @@ nav ul li a.cta-btn {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    /* Set a minimum height to prevent layout shift during typing animation */
+    min-height: 4rem; /* Adjust based on max height of the h2 content */
 }
 .hero p {
     font-size: 1.1rem;
@@ -587,6 +596,7 @@ nav ul li a.cta-btn {
     .hero h2 {
         font-size: 1.1rem;
     }
+    .hero h2 { min-height: 3.5rem; } /* Adjust min-height for mobile */
 }
 
 .cta-buttons {
@@ -774,6 +784,11 @@ section {
 .orange-tint .service-icon, .coral-tint .service-icon {
     color: rgba(255, 126, 49, 1);
     text-shadow: 0 0 10px rgba(255, 126, 49, 0.5);
+}
+
+.lime-tint .service-icon {
+    color: rgba(162, 213, 0, 1);
+    text-shadow: 0 0 10px rgba(162, 213, 0, 0.5);
 }
 
 .service-card h3 {
@@ -1608,23 +1623,36 @@ img {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     cursor: pointer;
-    display: none; /* Initially hidden */
-    justify-content: center;
-    align-items: center;
     z-index: 1000;
-    transition: all 0.3s ease;
+    display: flex; /* Use flex to center the icon */
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    /* Hide by default */
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 #back-to-top:hover {
     background: var(--secondary-color);
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(74, 223, 206, 0.4);
+}
+
+/* Class to show the button */
+#back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
 }
 
 /* Case Study Modal */
