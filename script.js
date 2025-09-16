@@ -103,4 +103,36 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // Intersection Observer for animations on scroll
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a staggered delay for each item
+                entry.target.style.transitionDelay = `${index * 100}ms`;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null, // observes intersections relative to the viewport
+        threshold: 0.1 // trigger when 10% of the element is visible
+    });
+
+    // A helper function to observe multiple elements
+    const observeElements = (selector) => {
+        const elements = document.querySelectorAll(selector);
+        if (elements.length > 0) {
+            elements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+    };
+
+    // Observe all elements you want to animate
+    observeElements('.team-member');
+    observeElements('.service-card');
+    observeElements('.metric-card');
+    observeElements('.case-study');
+    observeElements('.demo-service');
 });

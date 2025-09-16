@@ -712,6 +712,13 @@ section {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    /* Animation preparation */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.service-card.is-visible {
     height: 100%;
     position: relative;
     overflow: hidden;
@@ -991,6 +998,11 @@ section {
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack items vertically */
     justify-content: center; /* Space out content */
+    /* Animation preparation */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
     min-height: 450px; /* Ensure uniform card height */
 }
 
@@ -1104,6 +1116,13 @@ svg defs linearGradient#gradient stop:nth-child(2) {
     flex-direction: column;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
+    /* Animation preparation */
+    opacity: 0;
+    transform: translateY(40px);
+    /* Keep existing transitions and add new ones */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.4s ease;
+}
+.case-study.is-visible, .demo-service.is-visible {
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -1125,6 +1144,19 @@ svg defs linearGradient#gradient stop:nth-child(2) {
     max-width: 300px;
     min-width: 220px;
     margin: 0.5rem 0;
+    /* Animation preparation */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+/* Animation active state */
+.team-member.is-visible,
+.service-card.is-visible,
+.metric-card.is-visible,
+.case-study.is-visible,
+.demo-service.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Team member image enhancements */
